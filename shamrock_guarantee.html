@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shamrock M Ranch — Our Guarantee</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --emerald:    #1a3a2a;
+    --emerald-mid:#2d5c42;
+    --emerald-lt: #3d7a58;
+    --gold:       #c9a84c;
+    --gold-lt:    #e8c97a;
+    --gold-pale:  #f5e8c0;
+    --cream:      #faf6ee;
+    --text-dark:  #1a1a16;
+    --text-mid:   #3a3a30;
+    --text-soft:  #6a6a58;
+  }
+
+  body {
+    background: var(--emerald);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .card {
+    background: var(--cream);
+    max-width: 780px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px var(--gold),
+      0 0 0 6px var(--emerald-mid),
+      0 0 0 7px var(--gold),
+      0 30px 80px rgba(0,0,0,0.5);
+  }
+
+  /* Corner ornaments */
+  .card::before, .card::after {
+    content: '';
+    position: absolute;
+    width: 80px; height: 80px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.6;
+    z-index: 2;
+  }
+  .card::before { top: 14px; left: 14px; border-width: 2px 0 0 2px; }
+  .card::after  { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
+
+  .corner-br, .corner-tl-inner {
+    position: absolute;
+    width: 80px; height: 80px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.6;
+    z-index: 2;
+  }
+  .corner-br { top: 14px; right: 14px; border-width: 2px 2px 0 0; }
+  .corner-tl-inner { bottom: 14px; left: 14px; border-width: 0 0 2px 2px; }
+
+  /* Background texture */
+  .bg-texture {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(201,168,76,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(29,90,60,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .inner {
+    padding: 52px 60px 44px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 32px; }
+
+  .shamrock-icon {
+    display: block;
+    margin: 0 auto 16px;
+    font-size: 32px;
+    color: var(--emerald-lt);
+    letter-spacing: 6px;
+  }
+
+  .ranch-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--emerald);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .title em {
+    font-style: italic;
+    color: var(--emerald-lt);
+  }
+
+  .subtitle {
+    font-size: 17px;
+    color: var(--text-soft);
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+  .divider-diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* Promise grid */
+  .promises {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .promise {
+    background: white;
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 20px 22px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .promise:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26,58,42,0.12);
+  }
+
+  .promise-num {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .promise-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--emerald);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .promise-text {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  .promise-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--gold-lt));
+  }
+
+  /* Contact note */
+  .contact-note {
+    background: var(--emerald);
+    padding: 18px 24px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .contact-note p {
+    font-size: 14px;
+    color: var(--gold-pale);
+    line-height: 1.6;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .contact-note strong {
+    color: var(--gold-lt);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* Full contract note */
+  .contract-note {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .contract-note p {
+    font-size: 14px;
+    color: var(--text-soft);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .contract-note strong {
+    color: var(--emerald);
+    font-style: normal;
+  }
+
+  /* Copyright footer */
+  .copyright {
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding-top: 18px;
+    text-align: center;
+  }
+
+  .copyright p {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+
+  .copyright .cr-symbol {
+    color: var(--gold);
+  }
+
+  /* Watermark */
+  .watermark {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 90px;
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(26,58,42,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    letter-spacing: -2px;
+  }
+
+  /* Animations */
+  .card { animation: fadeUp 0.8s ease both; }
+  .promise { animation: fadeUp 0.6s ease both; }
+  .promise:nth-child(1) { animation-delay: 0.2s; }
+  .promise:nth-child(2) { animation-delay: 0.3s; }
+  .promise:nth-child(3) { animation-delay: 0.4s; }
+  .promise:nth-child(4) { animation-delay: 0.5s; }
+  .promise:nth-child(5) { animation-delay: 0.6s; }
+  .promise:nth-child(6) { animation-delay: 0.7s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .inner { padding: 40px 28px 36px; }
+    .promises { grid-template-columns: 1fr; }
+    .title { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="bg-texture"></div>
+  <div class="corner-br"></div>
+  <div class="corner-tl-inner"></div>
+  <div class="watermark">Shamrock M Ranch</div>
+
+  <div class="inner">
+
+    <div class="header">
+      <span class="shamrock-icon">☘ ☘ ☘</span>
+      <p class="ranch-name">Shamrock M Ranch LLC &nbsp;·&nbsp; Camano Island, Washington</p>
+      <h1 class="title">Our Collie <em>Promise</em></h1>
+      <p class="subtitle">Raising collies with love, care &amp; decades of dedication to the breed</p>
+    </div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="promises">
+
+      <div class="promise">
+        <div class="promise-accent"></div>
+        <span class="promise-num">01 &nbsp;·&nbsp; HEALTH</span>
+        <h3 class="promise-title">Certified Healthy at Departure</h3>
+        <p class="promise-text">Every puppy leaves with age-appropriate vaccinations, bi-weekly de-worming, a complete health record, and AKC eligibility.</p>
+      </div>
+
+      <div class="promise">
+        <div class="promise-accent"></div>
+        <span class="promise-num">02 &nbsp;·&nbsp; GUARANTEE</span>
+        <h3 class="promise-title">One-Year Congenital Guarantee</h3>
+        <p class="promise-text">We stand behind our bloodlines with a full one-year guarantee against fatal or life-altering congenital conditions originating prenatally.</p>
+      </div>
+
+      <div class="promise">
+        <div class="promise-accent"></div>
+        <span class="promise-num">03 &nbsp;·&nbsp; TEMPERAMENT</span>
+        <h3 class="promise-title">Sound Mind &amp; Spirit</h3>
+        <p class="promise-text">Each puppy is raised in a loving ranch environment and guaranteed to be of sound temperament at the time of sale.</p>
+      </div>
+
+      <div class="promise">
+        <div class="promise-accent"></div>
+        <span class="promise-num">04 &nbsp;·&nbsp; SAFETY</span>
+        <h3 class="promise-title">Collie Drug Sensitivity Guidance</h3>
+        <p class="promise-text">We provide every buyer with guidance on collie-sensitive medications including Ivermectin and Imodium — protecting your dog for life.</p>
+      </div>
+
+      <div class="promise">
+        <div class="promise-accent"></div>
+        <span class="promise-num">05 &nbsp;·&nbsp; SUPPORT</span>
+        <h3 class="promise-title">Lifelong Breeder Support</h3>
+        <p class="promise-text">We remain a resource for every family we place a puppy with. Questions, concerns, or just a puppy update — we are always here.</p>
+      </div>
+
+      <div class="promise">
+        <div class="promise-accent"></div>
+        <span class="promise-num">06 &nbsp;·&nbsp; PROTECTION</span>
+        <h3 class="promise-title">Every Dog Comes Home</h3>
+        <p class="promise-text">No Shamrock M Ranch collie will ever end up in a shelter. We are always first call if life changes — we will find them a wonderful home.</p>
+      </div>
+
+    </div>
+
+    <div class="contact-note">
+      <p>All correspondence is handled by email to ensure every communication is documented for your protection and ours.<br>
+      <strong>colliesoncamano@gmail.com &nbsp;·&nbsp; facebook.com/colliesoncamano</strong></p>
+    </div>
+
+    <div class="contract-note">
+      <p>A complete <strong>Health Guarantee &amp; Sales Contract</strong> and <strong>Spay/Neuter Agreement</strong> are provided<br>
+      to every buyer at the time of sale. Full contracts available upon request.</p>
+    </div>
+
+    <div class="copyright">
+      <p>
+        <span class="cr-symbol">©</span> 2025 SHAMROCK M RANCH LLC &nbsp;·&nbsp; ALL RIGHTS RESERVED<br>
+        THIS CONTENT, INCLUDING ALL GUARANTEE LANGUAGE, CONTRACT TERMS, AND DESIGN,<br>
+        IS THE ORIGINAL WORK OF SHAMROCK M RANCH LLC AND MAY NOT BE REPRODUCED,<br>
+        COPIED, OR DISTRIBUTED IN ANY FORM WITHOUT EXPRESS WRITTEN PERMISSION.
+      </p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

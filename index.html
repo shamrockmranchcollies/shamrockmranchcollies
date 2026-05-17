@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shamrock M Ranch — AKC Collies, Camano Island WA</title>
+  <meta name="description" content="Quality AKC collies raised with love on Camano Island, Washington. 25 years of breeding excellence. Litter expected June 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2d6e2d;
+      --green-dark: #1e4d1e;
+      --green-light: #f4f9f0;
+      --gold: #c8a030;
+      --gold-light: #f0d080;
+      --gold-dark: #8a6a10;
+      --cream: #f5f0e0;
+      --blue: #4a6fba;
+      --text: #2a2a2a;
+      --text-muted: #666;
+      --border: #d0e8c8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      color: var(--text);
+      background: #fff;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      background: var(--green-dark);
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #f5f0e0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+    .nav-btn {
+      background: transparent;
+      color: #c8e8c0;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 4px;
+      font-family: 'Lora', serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .nav-btn.active { background: rgba(255,255,255,0.2); color: #f0d080; font-weight: 500; }
+
+    /* ── LAYOUT ── */
+    .layout { display: flex; min-height: calc(100vh - 56px); }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 230px;
+      min-width: 230px;
+      background: var(--green-light);
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .sidebar-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--green-dark);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 0.5px solid transparent;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .sidebar-item:hover { background: #e4f0dc; border-color: #b8d8a8; }
+    .sidebar-dog-face {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--green);
+      flex-shrink: 0;
+      background: #c8e8b8;
+    }
+    .sidebar-dog-face img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .sidebar-dog-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; color: var(--green-dark); }
+    .sidebar-dog-role { font-size: 11px; color: #5a8a5a; font-style: italic; }
+
+    .sidebar-box {
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .sidebar-box.green { background: var(--green-dark); }
+    .sidebar-box.blue { background: #3b5998; }
+    .sidebar-box strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .sidebar-box.green strong { color: var(--gold-light); }
+    .sidebar-box.blue strong { color: #fff; font-size: 14px; }
+    .sidebar-box p { font-size: 12px; font-style: italic; line-height: 1.5; margin-bottom: 10px; }
+    .sidebar-box.green p { color: #c8e8c0; }
+    .sidebar-box.blue p { color: #d0d8f0; }
+
+    /* ── MAIN ── */
+    .main { flex: 1; padding: 2rem 2.5rem; overflow-y: auto; max-width: 860px; }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--green);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .hero::before {
+      content: '☘';
+      position: absolute;
+      font-size: 260px;
+      opacity: 0.07;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .hero-eyebrow { font-size: 13px; color: var(--gold-light); font-style: italic; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 54px; font-weight: 700; color: var(--cream); line-height: 1.1; }
+    .hero-title span { color: var(--gold-light); font-style: italic; }
+    .hero-tagline { font-size: 11px; color: #c8e8c0; letter-spacing: 0.18em; text-transform: uppercase; margin: 0.85rem 0 2rem; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── TYPOGRAPHY ── */
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .gold-rule { width: 44px; height: 2px; background: var(--gold); border: none; margin-bottom: 1.5rem; }
+    .body-text { font-size: 15px; line-height: 1.85; color: var(--text); margin-bottom: 1rem; }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin: 1.5rem 0 0.4rem;
+    }
+    .pull-quote {
+      background: #eef6e8;
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 1.1rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .pull-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--green-dark);
+    }
+    .shamrock-div {
+      text-align: center;
+      color: var(--green);
+      font-size: 18px;
+      letter-spacing: 12px;
+      opacity: 0.35;
+      margin: 1.75rem 0;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-family: 'Lora', serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:active { transform: translateY(2px); }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--cream);
+      border: 2px solid #f0e0a0;
+      border-bottom: 5px solid var(--gold-dark);
+      border-right: 3px solid #a07820;
+    }
+    .btn-tan {
+      background: #8a7a50;
+      color: var(--cream);
+      border: 2px solid #d8c898;
+      border-bottom: 5px solid #5a4a28;
+      border-right: 3px solid #6a5a38;
+    }
+    .btn-green {
+      background: var(--green);
+      color: var(--cream);
+      border: 2px solid #90cc90;
+      border-bottom: 5px solid #1a4010;
+      border-right: 3px solid #1e5020;
+    }
+    .btn-blue {
+      background: var(--blue);
+      color: #fff;
+      border: 2px solid #a0b8e8;
+      border-bottom: 5px solid #2a4a8a;
+      border-right: 3px solid #3a5aa0;
+    }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.25rem; }
+
+    /* ── NOTICE BOX ── */
+    .notice-box {
+      background: #fff8e8;
+      border: 1px solid #e8c840;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 14px;
+      color: #6a4a10;
+      line-height: 1.6;
+    }
+    .notice-box strong { color: #3a2a08; }
+
+    /* ── DOGS GRID ── */
+    .dogs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 1.5rem;
+    }
+    .dog-card {
+      background: #fff;
+      border: 1px solid #e0e8d8;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .dog-card:hover { border-color: var(--green); box-shadow: 0 4px 12px rgba(45,110,45,0.1); }
+    .dog-card-photo { width: 100%; height: 150px; overflow: hidden; background: #d4ecc8; }
+    .dog-card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .dog-card-body { padding: 0.9rem 1rem; }
+    .dog-card-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--green-dark); }
+    .dog-card-sub { font-size: 12px; color: var(--text-muted); font-style: italic; margin-bottom: 8px; }
+
+    /* ── DOG DETAIL ── */
+    .dog-detail { display: none; }
+    .dog-detail.active { display: block; }
+    .dog-detail-header { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1.75rem; flex-wrap: wrap; }
+    .dog-detail-photo {
+      width: 180px; height: 210px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--green);
+      flex-shrink: 0;
+    }
+    .dog-detail-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .dog-name { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 700; color: var(--green-dark); line-height: 1; margin-bottom: 4px; }
+    .dog-registered { font-style: italic; font-size: 14px; color: var(--text-muted); margin-bottom: 10px; }
+    .badge {
+      display: inline-block;
+      background: #eef6e8;
+      color: var(--green-dark);
+      font-size: 12px;
+      padding: 3px 12px;
+      border-radius: 20px;
+      border: 0.5px solid #b8d8a8;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+    .detail-section { margin-bottom: 1.25rem; }
+    .detail-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .pedigree { font-size: 13px; line-height: 2; }
+    .pedigree ul { list-style: none; padding-left: 1.25rem; border-left: 2px solid #c8d8c0; }
+    .pedigree li { position: relative; }
+    .pedigree li::before { content: '—'; position: absolute; left: -1.3rem; color: #8aaa8a; }
+    .ped-label { font-size: 11px; color: #5a8a5a; font-style: italic; margin-right: 4px; font-weight: 600; }
+
+    /* ── PUPPY INFO GRID ── */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 1.5rem 0; }
+    .info-card {
+      background: #fff;
+      border: 1px solid #e0e8d8;
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+    }
+    .info-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 5px;
+    }
+    .info-card p { font-size: 13px; line-height: 1.65; color: var(--text); }
+
+    /* ── CONTACT ── */
+    .contact-detail { display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem; font-size: 15px; }
+    .contact-detail a { color: var(--green); text-decoration: none; }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--green-light);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 700px) {
+      .sidebar { display: none; }
+      .main { padding: 1.25rem; }
+      .hero-title { font-size: 36px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .dog-detail-header { flex-direction: column; }
+      .nav { padding: 0.75rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" onclick="showPage('home')">☘ Shamrock M Ranch</a>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="showPage('home')">Home</button>
+    <button class="nav-btn" onclick="showPage('about')">About</button>
+    <button class="nav-btn" onclick="showPage('dogs')">Our Dogs</button>
+    <button class="nav-btn" onclick="showPage('puppies')">Puppies</button>
+    <button class="nav-btn" onclick="showPage('contact')">Contact</button>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <div class="sidebar-section-title">🐾 Our Dogs</div>
+      <div class="sidebar-item" onclick="showDog('blaze')">
+        <div class="sidebar-dog-face"><img src="images/blaze_spring2018.jpg" alt="Blaze"></div>
+        <div><div class="sidebar-dog-name">Blaze</div><div class="sidebar-dog-role">Stud dog</div></div>
+      </div>
+      <div class="sidebar-item" onclick="showDog('esme')">
+        <div class="sidebar-dog-face"><img src="images/esme1.jpg" alt="Esme"></div>
+        <div><div class="sidebar-dog-name">Esme</div><div class="sidebar-dog-role">Dam</div></div>
+      </div>
+      <div class="sidebar-item" onclick="showDog('freda')">
+        <div class="sidebar-dog-face"><img src="images/freda.jpg" alt="Freda"></div>
+        <div><div class="sidebar-dog-name">Freda</div><div class="sidebar-dog-role">Dam</div></div>
+      </div>
+      <div class="sidebar-item" onclick="showDog('vee')">
+        <div class="sidebar-dog-face"><img src="images/vee2.jpg" alt="Vee"></div>
+        <div><div class="sidebar-dog-name">Vee</div><div class="sidebar-dog-role">Dam</div></div>
+      </div>
+    </div>
+    <div class="sidebar-box green">
+      <strong>🐶 Litter Expected June 2026!</strong>
+      <p>Reserve your puppy now — spots fill fast</p>
+      <button class="btn btn-gold" onclick="showPage('puppies')" style="width:100%;justify-content:center;">See Details ↗</button>
+    </div>
+    <div class="sidebar-box blue">
+      <strong>📘 Find Us on Facebook</strong>
+      <p>Past litters, puppy updates &amp; families sharing their Shamrock M Ranch collies</p>
+      <a class="btn btn-blue" href="https://www.facebook.com/colliesoncamano" target="_blank" style="width:100%;justify-content:center;">Visit Our Page ↗</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- HOME -->
+    <div id="page-home" class="page active">
+      <div class="hero">
+        <p class="hero-eyebrow">Camano Island, Washington &nbsp;·&nbsp; 25 Years of Breeding Excellence</p>
+        <h1 class="hero-title">Shamrock M <span>Ranch</span></h1>
+        <p class="hero-tagline">Quality AKC Collies Raised With Love On Our Island Ranch</p>
+        <div class="hero-btns">
+          <button class="btn btn-gold" onclick="showPage('puppies')">View Available Puppies ↗</button>
+          <button class="btn btn-tan" onclick="showPage('dogs')">Meet Our Dogs</button>
+        </div>
+      </div>
+
+      <h2 class="page-title">Welcome to Shamrock M Ranch</h2>
+      <hr class="gold-rule">
+      <p class="body-text">We live on a 2½ acre ranch on beautiful Camano Island — about an hour north of Seattle and an hour south of the Canadian border. Our collies share our home, our land, and our lives alongside our horses, and we consider every one of them family.</p>
+      <div class="pull-quote">
+        <p>For 25 years, we have spent countless hours handpicking beautiful, healthy collies — avoiding inbreeding and line-breeding — because we believe that's what matters most when raising exceptional family companions.</p>
+      </div>
+      <p class="body-text">Every dog in our program has been chosen with intention, heart, and a deep love for this breed. We invite you to meet our dogs, explore our upcoming litter, and join the growing community of Shamrock M Ranch families.</p>
+      <div class="shamrock-div">☘ &nbsp; ☘ &nbsp; ☘</div>
+      <button class="btn btn-green" onclick="showPage('about')">Read Our Full Story ↗</button>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="page-about" class="page">
+      <h2 class="page-title">About Shamrock M Ranch</h2>
+      <hr class="gold-rule">
+      <p class="body-text">We live on a 2½ acre ranch on beautiful Camano Island in Washington State — about an hour north of Seattle and an hour south of the Canadian border. Our collies are raised alongside our horses and are very much a part of our family life, not just our breeding program.</p>
+      <p class="body-text">My parents raised and bred collies while I was growing up, and when I started my own family I carried on that tradition. For over 25 years, right here on this same piece of land, collies have been at the heart of our home.</p>
+
+      <h3 class="section-heading">Our Commitment to Health</h3>
+      <p class="body-text">All of our adult dogs have been eye-checked for CEA (Collie Eye Anomaly) and have healthy eyes. We have spent years carefully selecting dogs that avoid the inbreeding and line-breeding so common in the breed — because we believe that matters most when it comes to raising healthy, happy family pets.</p>
+
+      <div class="pull-quote">
+        <p>We never make demands that you show your collie. We only require that you care for and love your dog like family.</p>
+      </div>
+
+      <h3 class="section-heading">Our Dogs &amp; Puppies</h3>
+      <p class="body-text">Our collies are show quality, with excellent temperament, movement, and coat. They meet the American Collie Club Illustrated Standard. Puppies are placed with Limited AKC registration (spay/neuter agreement), though Full AKC is available to approved homes for an additional fee. All puppies leave us current on vaccinations and worming with a written health guarantee.</p>
+
+      <h3 class="section-heading">Our Community</h3>
+      <p class="body-text">Over 25 years, we've built something we're truly proud of — not just a breeding program, but a community. Our Facebook page is home to past and present Shamrock M Ranch families sharing their lives with their collies. We love seeing those updates, and we know you will too.</p>
+
+      <div class="btn-row">
+        <button class="btn btn-gold" onclick="showPage('contact')">Contact Us ↗</button>
+        <a class="btn btn-blue" href="https://www.facebook.com/colliesoncamano" target="_blank">📘 Visit Us on Facebook ↗</a>
+      </div>
+    </div>
+
+    <!-- OUR DOGS -->
+    <div id="page-dogs" class="page">
+      <div id="dogs-grid-view">
+        <h2 class="page-title">Our Dogs</h2>
+        <hr class="gold-rule">
+        <p class="body-text">Every dog at Shamrock M Ranch has been handpicked for health, temperament, and beauty. Click any dog to learn more.</p>
+        <div class="dogs-grid">
+          <div class="dog-card" onclick="showDog('blaze')">
+            <div class="dog-card-photo"><img src="images/blaze_march2019.jpg" alt="Blaze"></div>
+            <div class="dog-card-body">
+              <div class="dog-card-name">Blaze</div>
+              <div class="dog-card-sub">Blue merle &amp; white · Stud dog</div>
+              <button class="btn btn-green">🐾 Meet Blaze</button>
+            </div>
+          </div>
+          <div class="dog-card" onclick="showDog('esme')">
+            <div class="dog-card-photo"><img src="images/esme5.jpg" alt="Esme"></div>
+            <div class="dog-card-body">
+              <div class="dog-card-name">Esme</div>
+              <div class="dog-card-sub">Sable &amp; white · Dam</div>
+              <button class="btn btn-gold">🐾 Meet Esme</button>
+            </div>
+          </div>
+          <div class="dog-card" onclick="showDog('freda')">
+            <div class="dog-card-photo"><img src="images/freda.jpg" alt="Freda"></div>
+            <div class="dog-card-body">
+              <div class="dog-card-name">Freda</div>
+              <div class="dog-card-sub">Sable &amp; white · Dam</div>
+              <button class="btn btn-gold">🐾 Meet Freda</button>
+            </div>
+          </div>
+          <div class="dog-card" onclick="showDog('vee')">
+            <div class="dog-card-photo"><img src="images/vee1.jpg" alt="Vee"></div>
+            <div class="dog-card-body">
+              <div class="dog-card-name">Vee</div>
+              <div class="dog-card-sub">White with tri markings · Dam</div>
+              <button class="btn btn-tan">🐾 Meet Vee</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLAZE DETAIL -->
+      <div id="dog-blaze" class="dog-detail">
+        <button class="btn btn-tan" style="margin-bottom:1.25rem;" onclick="showDogsGrid()">← Back to Our Dogs</button>
+        <div class="dog-detail-header">
+          <div class="dog-detail-photo"><img src="images/blaze_march2019.jpg" alt="Blaze"></div>
+          <div>
+            <div class="dog-name">Blaze</div>
+            <div class="dog-registered">Lost Acres Blue Blazes, Tru-Vu</div>
+            <span class="badge">Blue Merle &amp; White</span>
+            <span class="badge">Stud Dog</span>
+            <span class="badge">Born July 18, 2017</span>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h3>About Blaze</h3>
+          <p class="body-text">Don't let those striking looks fool you — beneath that bold blue merle coat is one of the gentlest souls you'll ever meet. Blaze is our big teddy bear. He's quiet and shy, never barks, and has the kind of calm, soft temperament that makes him an absolute joy to be around. He is everything the collie breed is known for: loyal, gentle, and deeply sweet-natured.</p>
+        </div>
+        <div class="detail-section">
+          <h3>Health</h3>
+          <p class="body-text">Blaze has been tested and certified <strong>normal eyed</strong> (CEA clear).</p>
+        </div>
+        <div class="detail-section">
+          <h3>Pedigree</h3>
+          <div class="pedigree">
+            <ul>
+              <li><span class="ped-label">Sire:</span> Lost Acres Jaxxon Tru-Vu RN CGC
+                <ul><li>King Bruce of Scotland Bravo Tru-Vu</li><li>Royal Star's Moulan of Lost Acres</li></ul>
+              </li>
+              <li><span class="ped-label">Dam:</span> Rimrock's Chipeta Windsong of Royal Star
+                <ul><li>Northern Classic Alpineglo Wolf Call</li><li>Rimrock's Cheyloah Rainsong O' Alchemy RN</li></ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESME DETAIL -->
+      <div id="dog-esme" class="dog-detail">
+        <button class="btn btn-tan" style="margin-bottom:1.25rem;" onclick="showDogsGrid()">← Back to Our Dogs</button>
+        <div class="dog-detail-header">
+          <div class="dog-detail-photo"><img src="images/esme1.jpg" alt="Esme"></div>
+          <div>
+            <div class="dog-name">Esme</div>
+            <div class="dog-registered">Ginger of Sweet Cream Acres</div>
+            <span class="badge">Sable &amp; White</span>
+            <span class="badge">Dam</span>
+            <span class="badge">Born August 10, 2020</span>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h3>About Esme</h3>
+          <p class="body-text">Esme is everything you could want in a collie — loyal, gentle, and genuinely people-obsessed. She is the kind of dog who is always right by your side. Outgoing and warm with everyone she meets, she also has a natural guardian instinct that makes her wonderfully attentive to her family and home. Her coat is soft and easy to maintain, and her sweet expression perfectly matches her personality.</p>
+        </div>
+        <div class="detail-section">
+          <h3>Health</h3>
+          <p class="body-text">Esme has been tested and certified <strong>normal eyed</strong> (CEA clear).</p>
+        </div>
+        <div class="detail-section">
+          <h3>Pedigree</h3>
+          <div class="pedigree">
+            <ul>
+              <li><span class="ped-label">Sire:</span> Mr Sam of Sweet Cream Acres
+                <ul><li>Texas Takoda Travell</li><li>Rose Ridge's Magnetic Fascination</li></ul>
+              </li>
+              <li><span class="ped-label">Dam:</span> Ginger of Sweet Cream Acres
+                <ul><li>Penrod Hill Robbie</li><li>Millers Happy Lassie</li></ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- FREDA DETAIL -->
+      <div id="dog-freda" class="dog-detail">
+        <button class="btn btn-tan" style="margin-bottom:1.25rem;" onclick="showDogsGrid()">← Back to Our Dogs</button>
+        <div class="dog-detail-header">
+          <div class="dog-detail-photo"><img src="images/freda.jpg" alt="Freda"></div>
+          <div>
+            <div class="dog-name">Freda</div>
+            <div class="dog-registered">Sweet Cream Acres Lady Charlotte</div>
+            <span class="badge">Sable &amp; White</span>
+            <span class="badge">Dam</span>
+            <span class="badge">Born October 21, 2024</span>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h3>About Freda</h3>
+          <p class="body-text">Freda is our adventurous girl — always curious, always exploring, and never missing a thing. She has the independent spirit of a true ranch dog, but don't let that fool you. She is as loving and gentle as they come, and she takes her self-appointed role as ranch watchdog very seriously. Whether it's a stranger coming up the drive or the horses getting a little too rowdy in the pasture, Freda is on it — and she'll make sure you know about it.</p>
+        </div>
+        <div class="detail-section">
+          <h3>Health</h3>
+          <p class="body-text">Freda has been tested and certified <strong>normal eyed</strong> (CEA clear). Additional testing to be updated as she matures.</p>
+        </div>
+        <div class="detail-section">
+          <h3>Pedigree</h3>
+          <div class="pedigree">
+            <ul>
+              <li><span class="ped-label">Sire:</span> Miller's Leo
+                <ul><li>Miller's Bowser</li><li>Miller's Queenie</li></ul>
+              </li>
+              <li><span class="ped-label">Dam:</span> Sweet Cream Acres Lady Charlotte
+                <ul><li>Copper of Penrod</li><li>Lacey of Sweet Cream Acres</li></ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- VEE DETAIL -->
+      <div id="dog-vee" class="dog-detail">
+        <button class="btn btn-tan" style="margin-bottom:1.25rem;" onclick="showDogsGrid()">← Back to Our Dogs</button>
+        <div class="dog-detail-header">
+          <div class="dog-detail-photo"><img src="images/vee2.jpg" alt="Vee"></div>
+          <div>
+            <div class="dog-name">Vee</div>
+            <div class="dog-registered">Veronica · Daughter of Blaze &amp; Esme</div>
+            <span class="badge">White with Tri Markings</span>
+            <span class="badge">Dam</span>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h3>About Vee</h3>
+          <p class="body-text">Vee is the best of both her parents wrapped up in one stunning white and tri package. Like her mama Esme, she is a true shadow dog — warm, gentle, and happiest when she's right by your side. Like her dad Blaze, she has a quiet, shy sweetness that makes her instantly endearing. She loves to run and explore the ranch with Freda, but she always comes back to her people. That's just who Vee is.</p>
+        </div>
+        <div class="detail-section">
+          <h3>Health</h3>
+          <p class="body-text">Vee has been tested and certified <strong>normal eyed</strong> (CEA clear) and <strong>N/N for MDR1</strong> (normal/normal — no drug sensitivity).</p>
+        </div>
+        <div class="detail-section">
+          <h3>Pedigree</h3>
+          <div class="pedigree">
+            <ul>
+              <li><span class="ped-label">Sire:</span> Lost Acres Blue Blazes, Tru-Vu
+                <ul><li>Lost Acres Jaxxon Tru-Vu RN CGC</li><li>Rimrock's Chipeta Windsong of Royal Star</li></ul>
+              </li>
+              <li><span class="ped-label">Dam:</span> Ginger of Sweet Cream Acres
+                <ul><li>Mr Sam of Sweet Cream Acres</li><li>Penrod Hill Robbie line</li></ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PUPPIES -->
+    <div id="page-puppies" class="page">
+      <h2 class="page-title">Available Puppies</h2>
+      <hr class="gold-rule">
+      <div class="notice-box">
+        <strong>🐶 Litter Expected June 2026!</strong> We are currently accepting inquiries and deposits. Reach out now to reserve your place — our litters go quickly after 25 years of happy families!
+      </div>
+      <p class="body-text">All of our puppies are raised with love on our Camano Island ranch, born into a home environment. They are well-socialized, healthy, and ready to become cherished members of your family. Pickup is at our ranch on Camano Island. In some cases delivery may be possible by prior arrangement — reach out to us at <a href="mailto:colliesoncamano@gmail.com" style="color:var(--green);">colliesoncamano@gmail.com</a> to discuss your situation.</p>
+      <p class="body-text">To see photos and updates from past litters and happy Shamrock M Ranch families, visit us on Facebook — it's the most active and interactive place to connect with our community.</p>
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>AKC Registration</h4>
+          <p>Puppies come with Limited AKC registration (spay/neuter agreement). Full AKC available to approved homes for an additional fee.</p>
+        </div>
+        <div class="info-card">
+          <h4>Health Guarantee</h4>
+          <p>All puppies leave current on vaccinations and worming. A written health guarantee is included with every puppy. <a href="/shamrock_guarantee.html" style="color:var(--green);font-style:italic;">View Our Full Guarantee →</a></p>
+        </div>
+        <div class="info-card">
+          <h4>Reservations</h4>
+          <p>A non-refundable $200 deposit holds your pick. We accept Visa, MC, AMEX, check, money order, or cash. All correspondence by email to ensure your records are complete.</p>
+        </div>
+        <div class="info-card">
+          <h4>Weekly Updates</h4>
+          <p>Weekly photos of both sides and faces. Video updates every few weeks so you can watch your puppy grow.</p>
+        </div>
+      </div>
+      <div class="shamrock-div">☘ &nbsp; ☘ &nbsp; ☘</div>
+      <div class="btn-row">
+        <button class="btn btn-gold" onclick="showPage('contact')">Inquire About the June Litter ↗</button>
+        <a class="btn btn-blue" href="https://www.facebook.com/colliesoncamano" target="_blank">📘 See Past Litters on Facebook ↗</a>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="page-contact" class="page">
+      <h2 class="page-title">Get in Touch</h2>
+      <hr class="gold-rule">
+      <p class="body-text">We welcome any and all inquiries! Whether you have questions about our dogs, want to be added to our June 2026 litter waitlist, or just want to chat about collies, we'd love to hear from you.</p>
+      <div class="pull-quote">
+        <p>We are happy to supply pedigrees, photos of the parents, our health guarantee, and weekly puppy updates. No question is too small.</p>
+      </div>
+      <p class="body-text">Because we keep irregular hours, email is the best and most reliable way to reach us — and it ensures every communication is saved for your records and ours. Please reach out at any time and we will respond as promptly as possible.</p>
+      <div style="margin: 1.5rem 0;">
+        <div class="contact-detail">📧 <a href="mailto:colliesoncamano@gmail.com">colliesoncamano@gmail.com</a></div>
+        <div class="contact-detail">📘 <a href="https://www.facebook.com/colliesoncamano" target="_blank">facebook.com/colliesoncamano</a></div>
+        <div class="contact-detail">📍 Camano Island, Washington</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-gold" href="mailto:colliesoncamano@gmail.com">📧 Send Us an Email ↗</a>
+        <a class="btn btn-blue" href="https://www.facebook.com/colliesoncamano" target="_blank">📘 Visit Our Facebook Page ↗</a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <p>☘ Shamrock M Ranch LLC &nbsp;·&nbsp; Camano Island, Washington &nbsp;·&nbsp; 25 Years of Quality AKC Collies Raised With Heart &nbsp;·&nbsp; © 2025 All Rights Reserved</p>
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const page = document.getElementById('page-' + id);
+    if (page) page.classList.add('active');
+    const labels = {home:'Home',about:'About',dogs:'Our Dogs',puppies:'Puppies',contact:'Contact'};
+    document.querySelectorAll('.nav-btn').forEach(b => {
+      if (b.textContent.trim() === labels[id]) b.classList.add('active');
+    });
+    if (id === 'dogs') showDogsGrid();
+    window.scrollTo(0, 0);
+  }
+
+  function showDog(name) {
+    showPage('dogs');
+    document.getElementById('dogs-grid-view').style.display = 'none';
+    document.querySelectorAll('.dog-detail').forEach(d => d.classList.remove('active'));
+    const el = document.getElementById('dog-' + name);
+    if (el) el.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showDogsGrid() {
+    document.getElementById('dogs-grid-view').style.display = 'block';
+    document.querySelectorAll('.dog-detail').forEach(d => d.classList.remove('active'));
+  }
+</script>
+</body>
+</html>
